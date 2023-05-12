@@ -49,6 +49,18 @@ namespace GettingSimpleInfo.ViewModels
 
         #endregion
 
+        #region Название элемента
+
+        private string _elementName = "<Выберете элемент>";
+
+        public string ElementName
+        {
+            get => _elementName;
+            set => Set(ref _elementName, value);
+        }
+
+        #endregion
+
         #region Команды
 
         #region Команда получение всех комнат
@@ -67,15 +79,35 @@ namespace GettingSimpleInfo.ViewModels
 
         #endregion
 
+        #region Получение элемента и его имени
+
+        public ICommand GetElementName { get; }
+
+        private void OnGetElementNameExecuted(object parameter)
+        {
+            RevitCommand.mainView.Hide();
+            ElementName = RevitModel.GetElementBySelection();
+            RevitCommand.mainView.ShowDialog();
+        }
+
+        private bool CanGetElementNameExecute(object parameter)
+        {
+            return true;
+        }
+
+        #endregion
+
         #endregion
 
 
         #region Конструктор класса MainWindowViewModel
         public MainWindowViewModel()
         {
-            #region
+            #region Команды
 
             GetRoomsCommand = new LambdaCommand(OnGetRoomsCommandExecuted, CanGetRoomsCommandExecute);
+
+            GetElementName = new LambdaCommand(OnGetElementNameExecuted, CanGetElementNameExecute);
 
             #endregion
         }

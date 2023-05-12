@@ -17,6 +17,8 @@ namespace GettingSimpleInfo.Infrastructure
     [Regeneration(RegenerationOption.Manual)]
     internal class RevitCommand : IExternalCommand
     {
+        public static MainWindow mainView = null;
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiapp = commandData.Application;
@@ -37,6 +39,8 @@ namespace GettingSimpleInfo.Infrastructure
                     helper.Owner = proc.MainWindowHandle;
 
                     view.DataContext = mainWindowViewModel;
+
+                    mainView = view;
 
                     if (view.ShowDialog() != true)
                     {

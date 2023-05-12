@@ -10,6 +10,7 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 using Autodesk.Revit.DB.Architecture;
 using System.Collections.ObjectModel;
+using GettingSimpleInfo.Infrastructure;
 
 namespace GettingSimpleInfo
 {
@@ -36,6 +37,15 @@ namespace GettingSimpleInfo
                                                           .ToList();
 
             return rooms;
+        }
+
+        public string GetElementBySelection()
+        {
+            Selection sel = UIDoc.Selection;
+            Reference picked = sel.PickObject(ObjectType.Element, "Выберете элемент в модели");
+            Element elem = Doc.GetElement(picked);
+
+            return elem.Name;
         }
     }
 }

@@ -30,16 +30,27 @@
                  ItemsSource="{Binding Rooms}" />
         <GridSplitter Grid.Column="1"
                       ShowsPreview="False"
-                      Width="3" 
+                      Width="3"
                       HorizontalAlignment="Center"
-                      VerticalAlignment="Stretch"/>
+                      VerticalAlignment="Stretch" />
         <StackPanel Grid.Column="2">
             <Button Content="Получить комнаты"
-                    Width="120"
+                    Width="150"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
                     Margin="10,10,0,0"
-                    Command="{Binding GetRoomsCommand}"/>
+                    Command="{Binding GetRoomsCommand}" />
+            <Button Content="Получить имя элемента"
+                    Width="150"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="10,10,0,0"
+                    Command="{Binding GetElementName}" />
+            <TextBox Width="200"
+                     HorizontalAlignment="Left"
+                     Margin="10,10,0,0"
+                     Text="{Binding ElementName, Mode=OneWay}"
+                     IsReadOnly="True" />
         </StackPanel>
     </Grid>
 </Window>
