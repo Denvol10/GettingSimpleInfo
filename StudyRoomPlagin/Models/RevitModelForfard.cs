@@ -15,22 +15,22 @@ namespace GettingSimpleInfo
 {
     public class RevitModelForfard
     {
-        private UIApplication _uiapp = null;
-        private Application _app = null;
-        private UIDocument _uidoc = null;
-        private Document _doc = null;
+        private UIApplication UIApp { get; set; } = null;
+        private Application App { get; set; } = null;
+        private UIDocument UIDoc { get; set; } = null;
+        private Document Doc { get; set; } = null;
 
         public RevitModelForfard(UIApplication uiapp)
         {
-            _uiapp = uiapp;
-            _app = uiapp.Application;
-            _uidoc = uiapp.ActiveUIDocument;
-            _doc = uiapp.ActiveUIDocument.Document;
+            UIApp = uiapp;
+            App = uiapp.Application;
+            UIDoc = uiapp.ActiveUIDocument;
+            Doc = uiapp.ActiveUIDocument.Document;
         }
 
         public List<string> GetAllRooms()
         {
-            var rooms = new FilteredElementCollector(_doc).OfCategory(BuiltInCategory.OST_Rooms)
+            var rooms = new FilteredElementCollector(Doc).OfCategory(BuiltInCategory.OST_Rooms)
                                                           .Cast<Room>()
                                                           .Select(r => r.Name)
                                                           .ToList();
