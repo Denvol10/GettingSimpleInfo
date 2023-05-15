@@ -19,7 +19,7 @@ namespace GettingSimpleInfo
         private UIApplication UIApp { get; set; } = null;
         private Application App { get; set; } = null;
         private UIDocument UIDoc { get; set; } = null;
-        private Document Doc { get; set; } = null;
+        public Document Doc { get; set; } = null;
 
         public RevitModelForfard(UIApplication uiapp)
         {
@@ -46,6 +46,21 @@ namespace GettingSimpleInfo
             Element elem = Doc.GetElement(picked);
 
             return elem.Name;
+        }
+
+        public void SetElementMark(string mark)
+        {
+            Selection sel = UIDoc.Selection;
+            Reference picked = sel.PickObject(ObjectType.Element, "Выберете элемент в модели");
+            Element elem = Doc.GetElement(picked);
+
+            var param = elem.get_Parameter(BuiltInParameter.ALL_MODEL_MARK);
+            using(Transaction trans = new Transaction(Doc, "Set Mark"))
+            {
+                trans.Start();
+                param.Set(mark);
+                trans.Commit();
+            }
         }
     }
 }

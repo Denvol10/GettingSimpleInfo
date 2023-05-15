@@ -97,6 +97,26 @@ namespace GettingSimpleInfo.ViewModels
 
         #endregion
 
+        #region Назначение марки элементу
+
+        public ICommand SetMark { get; }
+
+        private void OnSetMarkExecuted(object parameter)
+        {
+            RevitCommand.mainView.Hide();
+
+            RevitModel.SetElementMark("User Mark");
+
+            RevitCommand.mainView.ShowDialog();
+        }
+
+        private bool CanSetMarkExecute(object parameter)
+        {
+            return true;
+        }
+
+        #endregion
+
         #endregion
 
 
@@ -108,6 +128,8 @@ namespace GettingSimpleInfo.ViewModels
             GetRoomsCommand = new LambdaCommand(OnGetRoomsCommandExecuted, CanGetRoomsCommandExecute);
 
             GetElementName = new LambdaCommand(OnGetElementNameExecuted, CanGetElementNameExecute);
+
+            SetMark = new LambdaCommand(OnSetMarkExecuted, CanSetMarkExecute);
 
             #endregion
         }

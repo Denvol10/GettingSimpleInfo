@@ -51,6 +51,12 @@
                      Margin="10,10,0,0"
                      Text="{Binding ElementName, Mode=OneWay}"
                      IsReadOnly="True" />
+            <Button Content="Назначить марку элементу"
+                    Width="180"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="10,10,0,0"
+                    Command="{Binding SetMark}"/>
         </StackPanel>
     </Grid>
 </Window>

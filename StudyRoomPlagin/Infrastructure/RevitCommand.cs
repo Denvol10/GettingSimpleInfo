@@ -42,10 +42,7 @@ namespace GettingSimpleInfo.Infrastructure
 
                     mainView = view;
 
-                    if (view.ShowDialog() != true)
-                    {
-                        return Result.Cancelled;
-                    }
+                    view.ShowDialog();
                 }
 
                 return Result.Succeeded;
