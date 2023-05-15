@@ -105,7 +105,7 @@ namespace GettingSimpleInfo.ViewModels
         {
             RevitCommand.mainView.Hide();
 
-            RevitModel.SetElementMark("User Mark");
+            RevitModel.SetElementMark(ElementName);
 
             RevitCommand.mainView.ShowDialog();
         }
